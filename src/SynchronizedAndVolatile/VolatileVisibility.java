@@ -5,7 +5,7 @@ Even if multiple threads are working on same instance of a class, although the f
 memory, but each thread creates its own copy of that field in the CPU registers and the cache.
 
 So, even after a thread updates a common field, it is possible that the other thread that tries to access the common field
-does not get the updated value, because we can not be sure when the thread one flushes that value to the main memory.
+does not get the updated value, because we can not be sure about how often the field is synced with the main memory.
 
 There comes the volatile keyword.
 -> When a field is marked volatile, every read of this value will be fetched from the main memory, and
