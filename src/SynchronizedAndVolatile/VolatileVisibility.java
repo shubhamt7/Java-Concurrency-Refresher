@@ -15,9 +15,10 @@ Along with the volatile field, other non-volatile fields visible to the thread a
 but only when the volatile field is flushed/read.
 
 Plus, JVM behind the scenes can reorder some instructions in order to optimize the execution time, but it can impact the fields'
-visibility. So to prevent that, Java avoids reordering the volatile fields.
+visibility. So to prevent that, Java has some re-ordering restrictions -
 
-Any fields above the volatile field statement can be reordered among themselves, and similarly for any fields below the volatile field.
+1. Any writes before write to a volatile field will remain before that only. Those writes above the volatile field write can be re-ordered among themselves.
+2. Any reads after the read of a volatile field will remain after that only. Those reads below the volatile field write can be re-ordered among themselves.
 
 */
 
